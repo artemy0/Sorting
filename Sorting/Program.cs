@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace forexample
 {
@@ -113,6 +114,18 @@ namespace forexample
         }
         //End of merge Sort--------------------------------------
 
+        //Quick Sort
+        static IEnumerable<int> QuickSort(IEnumerable<int> arr)
+        {
+            if (arr.Count() <= 1)
+                return arr;
+            var pivot = arr.First();
+            var less = arr.Skip(1).Where(i => i <= pivot);
+            var greater = arr.Skip(1).Where(i => i > pivot);
+            return QuickSort(less).Union(new List<int> { pivot }).Union(QuickSort(greater));
+
+        }
+        //End of quick Sort--------------------------------------
 
         //=======methods=======
         static void Swap(ref int x, ref int y)
